@@ -3,35 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Rock Paper Scissors - Interactive Game</title>
+    <meta name="description" content="Play Rock Paper Scissors against the computer with score tracking and auto-play features">
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Preload fonts for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="title">Rock Paper Scissors</div>
-    
-    <div class="moves-container">
-        <button class="move-button" onclick="playGame('rock')">
-            🪨
-        </button>
-        <button class="move-button" onclick="playGame('paper')">
-            📄
-        </button>
-        <button class="move-button" onclick="playGame('scissors')">
-            ✂️
-        </button>
-    </div>
-    
-    <div class="game-info">
-        <div class="choices" id="choices"></div>
-        <div class="result" id="result">Pick your move!</div>
-        <div class="score" id="score">Wins: 0, Losses: 0, Ties: 0</div>
-    </div>
-    
-    <div class="buttons-container">
-        <button class="reset-score-button" onclick="resetScore()">Reset Score</button>
-        <button class="auto-play-button" id="autoPlayBtn" onclick="toggleAutoPlay()">Auto Play</button>
-    </div>
 
+<body>
+    <!-- Main Game Container -->
+    <main class="game-container">
+        <!-- Game Header -->
+        <header>
+            <h1 class="game-title">Rock Paper Scissors</h1>
+            <p class="game-subtitle">Choose your weapon!</p>
+        </header>
+        
+        <!-- Game Controls Section -->
+        <section class="game-controls">
+            <div class="moves-container" role="group" aria-label="Game moves">
+                <button class="move-button" 
+                        data-move="rock" 
+                        aria-label="Choose Rock"
+                        title="Rock crushes Scissors">
+                    <span class="move-emoji">🪨</span>
+                    <span class="move-label">Rock</span>
+                </button>
+                
+                <button class="move-button" 
+                        data-move="paper" 
+                        aria-label="Choose Paper"
+                        title="Paper covers Rock">
+                    <span class="move-emoji">📄</span>
+                    <span class="move-label">Paper</span>
+                </button>
+                
+                <button class="move-button" 
+                        data-move="scissors" 
+                        aria-label="Choose Scissors"
+                        title="Scissors cuts Paper">
+                    <span class="move-emoji">✂️</span>
+                    <span class="move-label">Scissors</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Game Results Section -->
+        <section class="game-results">
+            <div class="results-card">
+                <!-- Current Game Display -->
+                <div class="current-game">
+                    <div class="choices" id="choices" aria-live="polite">
+                        Ready to play? Choose your move!
+                    </div>
+                    <div class="result" id="result" aria-live="assertive">
+                        May the best player win! 🎮
+                    </div>
+                </div>
+                
+                <!-- Score Display -->
+                <div class="score-section">
+                    <div class="score" id="score">
+                        Wins: 0 | Losses: 0 | Ties: 0
+                    </div>
+                    <div class="win-streak" id="winStreak" aria-live="polite"></div>
+                </div>
+                
+                <!-- Game History (Hidden by default) -->
+                <div class="game-history" id="gameHistory" style="display: none;">
+                    <h3 class="history-title">Recent Games</h3>
+                    <div class="history-list" id="historyList"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Action Buttons Section -->
+        <section class="action-buttons">
+            <div class="buttons-container">
+                <button class="action-button reset-button" 
+                        id="resetBtn"
+                        aria-label="Reset game score">
+                    <span class="button-icon">🔄</span>
+                    Reset Score
+                </button>
+                
+                <button class="action-button auto-play-button" 
+                        id="autoPlayBtn"
+                        aria-label="Toggle automatic gameplay">
+                    <span class="button-icon">🤖</span>
+                    Auto Play
+                </button>
+                
+                <button class="action-button history-button" 
+                        id="historyBtn"
+                        aria-label="Toggle game history display">
+                    <span class="button-icon">📊</span>
+                    Show History
+                </button>
+            </div>
+        </section>
+        
+        <!-- Keyboard Instructions -->
+        <footer class="keyboard-help">
+            <p class="help-text">
+                <span class="help-icon">⌨️</span>
+                Use <kbd>R</kbd>, <kbd>P</kbd>, <kbd>S</kbd> keys or <kbd>Space</kbd> for random move
+            </p>
+        </footer>
+    </main>
+    
+    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
